@@ -2,15 +2,15 @@
  * Created by USER on 19/09/2016.
  */
 public class Persona {
-    public String DNI;
+    public String Dni;
     public String numSS;
     public String nombre;
     public String apellidos;
     public int edad;
     public double salario;
 
-    public Persona(String DNI, String numSS, String nombre, String apellidos, int edad, double salario) {
-        this.DNI = DNI;
+    public Persona(String Dni, String numSS, String nombre, String apellidos, int edad, double salario) {
+        this.Dni = Dni;
         this.numSS = numSS;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -19,11 +19,11 @@ public class Persona {
     }
 
     public String getDNI() {
-        return DNI;
+        return Dni;
     }
 
     public void setDNI(String DNI) {
-        this.DNI = DNI;
+        this.Dni = DNI;
     }
 
     public String getNumSS() {
@@ -75,7 +75,7 @@ public class Persona {
 
         if (edad != persona.edad) return false;
         if (Double.compare(persona.salario, salario) != 0) return false;
-        if (DNI != null ? !DNI.equals(persona.DNI) : persona.DNI != null) return false;
+        if (Dni != null ? !Dni.equals(persona.Dni) : persona.Dni != null) return false;
         if (numSS != null ? !numSS.equals(persona.numSS) : persona.numSS != null) return false;
         if (nombre != null ? !nombre.equals(persona.nombre) : persona.nombre != null) return false;
         return apellidos != null ? apellidos.equals(persona.apellidos) : persona.apellidos == null;
@@ -86,7 +86,7 @@ public class Persona {
     public int hashCode() {
         int result;
         long temp;
-        result = DNI != null ? DNI.hashCode() : 0;
+        result = Dni != null ? Dni.hashCode() : 0;
         result = 31 * result + (numSS != null ? numSS.hashCode() : 0);
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (apellidos != null ? apellidos.hashCode() : 0);
@@ -99,7 +99,7 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" +
-                "DNI='" + DNI + '\'' +
+                "DNI='" + Dni + '\'' +
                 ", numSS='" + numSS + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +

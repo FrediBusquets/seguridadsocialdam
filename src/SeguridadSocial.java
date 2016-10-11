@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import java.util.stream.Collectors;
 /**
  * Created by USER on 19/09/2016.
  */
@@ -13,39 +15,74 @@ public class SeguridadSocial {
         personasList = new ArrayList<>();
 
     }
+    //HashMap
+    public  Map<String, Persona> personaMapDNI = new HashMap<>();
+    private Map <String, Persona> personaMapNumSS = new HashMap<>();
 
-// Debes comprobar que no se introduzcan dos personas con el mismo DNI/Número Seguridad Social
 
     public void altaPersona(Persona persona) {
-    for (Persona personaActual : personasList){
-        if (personaActual.getDNI().equals(persona.getDNI())||(personaActual.getDNI().equals(persona.getNumSS()))){
+        if (!personaMapDNI. containsKey(persona.getDNI()) && !personaMapNumSS.containsKey(persona.getNumSS())) {
+            personaMapDNI.put(persona.getDNI(), persona);
+            personaMapNumSS.put(persona.getNumSS(), persona);
+        }
+  /*
+            Boolean repetido = false;
 
+            for (int i = 0; i< personasList.size();i++){
+                Persona p = personasList.get(i);
+                if(p.getDNI().equalsIgnoreCase(persona.getDNI())){
+                    repetido = true;
+                }
             }
-    }
-    }
+            if(!repetido){
+                personasList.add(persona);
+            }
+            boolean repetida = personasList.stream().anyMatch(p -> p.getDNI().equals(persona.getDNI())) ;
+       */ }
+
 
     public void bajaPersona(String dni) {
+        //HashMap
+        personaMapNumSS.remove(personaMapDNI.get(dni).getNumSS());
 
+      //  personasList.removeIf(persona -> persona.getDNI().equals(dni));
     }
-
     public Persona obtenerPersonaPorDNI(String dni) {
-    return null;
+         // HashMap
+        return personaMapDNI.get(dni);
+
+      //  return personasList.stream().filter(persona -> persona.getDNI().equals(dni)).findFirst().get();
     }
 
     public Persona obtenerPersonaPorNumSS(String numSS) {
-    return null;
+         //HashMap
+        return personaMapNumSS.get(numSS);
+
+      //  return personasList.stream().filter(persona -> persona.getNumSS() == numSS).findFirst().get();
     }
 
-    public List<Persona> obtenerPersonasRangoSalarial(double min, double max){
-    return null;
+    public List<Persona> obtenerPersonasRangoSalarial(double min, double max) {
+        // HashMap
+        return personaMapDNI.values().stream().filter(persona -> persona.getSalario()>=min && persona.getSalario()<=max).collect(Collectors.toList());
     }
 
     public List<Persona> obtenerPersonasMayoresQue(int edad){
-    return null;
+
+        ArrayList<Persona> temporal = new ArrayList<>();
+        for(Persona y : personasList){
+           if (y.getEdad() > edad){
+               temporal.add(y);
+           }
+       }
+    return temporal;
+
+        //return personasList.stream().filter(persona -> persona.getEdad() > edad).collect(Collectors.toList());
     }
 
+
     public List<Persona> obtenerTodas(){
-    return null;
+        return personasList;
+
     }
 
     @Override
